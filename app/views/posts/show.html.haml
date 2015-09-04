@@ -1,0 +1,9 @@
+- model_class = Post
+.page-header
+  %h2
+    = @post.name
+    = link_to "Back", "/", :class => "fr btn"
+.clear
+%p
+  = @post.description.gsub("\r\n", '<br>').html_safe rescue @post.description
+

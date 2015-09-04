@@ -1,0 +1,22 @@
+- model_class = Post
+.page-header
+  %h2
+    Stories
+    = link_to t('.new', :default => t("helpers.links.new")), new_post_path, :class => 'btn btn-primary fr'
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:description)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @posts.each do |post|
+      %tr
+        %td= post.name
+        %td= truncate(post.description, length: 50, omission: '...')
+        %td
+          = link_to "View", post_path(post), :class => 'btn btn-default btn-xs'
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(post), :class => 'btn btn-default btn-xs'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(post), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
+
+

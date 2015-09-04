@@ -1,0 +1,13 @@
+= form_for @post, html: { class: "form form-horizontal post" } do |f|
+  .form-group
+    = f.label :name, class: 'control-label'
+    .controls
+      = f.text_field :name, class: 'form-control', required: true
+    = error_span(@post[:name])
+  .form-group
+    = f.label :description, class: 'control-label'
+    .controls
+      = f.text_area :description, class: 'form-control', required: true
+    = error_span(@post[:description])
+  = f.submit nil,class: 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), posts_path, :class => 'btn btn-default'
