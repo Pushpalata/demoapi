@@ -1,10 +1,10 @@
 class TokensController < ApplicationController
   # skip_before_filter :authenticate_user_from_token
-  skip_before_filter :authenticate_user!
+  skip_before_filter :user_authentication!
   respond_to :json
   def create
-    email = params[:user][:email]
-    password = params[:user][:password]
+    email = params[:email] rescue nil
+    password = params[:password] rescue nil
     if request.format != :json
       render :status=>406, :json=>{:message=>"The request must be json"}
       return
